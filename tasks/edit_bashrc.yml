@@ -1,0 +1,25 @@
+---
+- name: Populate aliases for .bashrc
+  block:
+    # NOTE: We only need to check this because the newline is not idempotent for some reason.
+    - name: Checking if aliases comment exists
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        search_string: "# aliases"
+        state: absent
+      check_mode: yes
+      changed_when: false
+      register: exists
+
+    - name: Adding aliases comment for neatness
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        line: "\n# aliases"
+        search_string: "\n#aliases"
+      when: not exists.found
+
+    - name: Adding aliases
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        line: "alias {{ item.key }}='{{ item.value }}'"
+      loop: "{{ bashrc_aliases | dict2items }}"

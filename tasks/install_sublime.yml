@@ -1,0 +1,20 @@
+---
+- name: Install Sublime Text
+  become: yes
+  vars:
+    app: Sublime
+  block:
+    - name: Importing key ("{{ app }}")
+      ansible.builtin.rpm_key:
+        state: present
+        key: "{{ sublime.key }}"
+
+    - name: Getting repo ("{{ app }}")
+      ansible.builtin.get_url:
+        url: "{{ sublime.repo }}"
+        dest: /etc/yum.repos.d
+
+    - name: Installing via dnf (Sublime)
+      ansible.builtin.dnf:
+        name: sublime-text
+        state: present

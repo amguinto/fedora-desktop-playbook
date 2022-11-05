@@ -1,0 +1,24 @@
+install_directory: /opt
+
+dnf_packages:
+  - cmake
+  - epel-release
+  - gcc-c++
+  - git
+  - git-lfs
+
+sublime:
+  key: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+  repo: https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+
+microsoft_key: https://packages.microsoft.com/keys/microsoft.asc
+aws_cli_package: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+
+bashrc_aliases:
+  edbsh: "subl ~/.bashrc"
+  srbsh: "source ~/.bashrc"
+  c: "clear"
+  lah: "ls -lAh --group-directories-first --human-readable"
+  dps: "docker ps -a"
+  dip: "docker image prune --force"
+  dcp: "docker container prune --force"

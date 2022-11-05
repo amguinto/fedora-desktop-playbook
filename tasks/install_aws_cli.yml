@@ -1,0 +1,28 @@
+---
+- name: Install AWS CLI
+  become: yes
+  vars:
+    app: AWS CLI
+  block:
+    # NOTE: We are doing this because we have to wget and we will always log a change
+    - name: Checking if AWS needs to be installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/aws
+      register: installed
+
+    - name: Getting Package ("{{ app }}")
+      ansible.builtin.unarchive:
+        src: "{{ aws_cli_package }}"
+        dest: "{{ install_directory }}"
+        remote_src: yes
+      when: not installed
+
+    - name: Running installer (AWS CLI)
+      ansible.builtin.shell: "/bin/bash {{ install_directory }}/aws/install --update"
+      when: not installed
+
+    - name: Removing package ("{{ app }}")
+      ansible.builtin.file:
+        path: "{{ install_directory}}/aws"
+        state: absent
+      when: not installed

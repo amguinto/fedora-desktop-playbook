@@ -1,0 +1,13 @@
+---
+- name: Update via dnf
+  become: yes
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Install packages via dnf
+  become: yes
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ dnf_packages }}"

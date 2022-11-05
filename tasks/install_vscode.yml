@@ -1,0 +1,20 @@
+---
+- name: Install VSCode
+  become: yes
+  vars:
+    app: VSCode
+  block:
+    - name: Importing key ("{{ app }}")
+      ansible.builtin.rpm_key:
+        state: present
+        key: "{{ microsoft_key }}"
+
+    - name: Creating vscode.repo ("{{ app }}")
+      ansible.builtin.template:
+        src: templates/vscode.repo.j2
+        dest: /etc/yum.repos.d/vscode.repo
+
+    - name: Installing via dnf ("{{ app }}")
+      ansible.builtin.dnf:
+        name: code
+        state: present
