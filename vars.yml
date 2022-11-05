@@ -1,5 +1,8 @@
 install_directory: /opt
 
+custom_directories:
+  - ~/Development
+
 dnf_packages:
   - cmake
   - epel-release

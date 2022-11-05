@@ -4,6 +4,7 @@
     - vars.yml
   tasks:
     - include_tasks: tasks/install_with_dnf.yml
+    - include_tasks: tasks/edit_filesystem.yml
     - include_tasks: tasks/install_sublime.yml
     - include_tasks: tasks/install_aws_cli.yml
     - include_tasks: tasks/install_vscode.yml
