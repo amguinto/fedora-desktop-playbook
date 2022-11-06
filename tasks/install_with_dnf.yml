@@ -5,6 +5,12 @@
     name: "*"
     state: latest
 
+- name: Install epel-release GPG key
+  become: yes
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ epel_release_key }}"
+
 - name: Install packages via dnf
   become: yes
   ansible.builtin.dnf:
