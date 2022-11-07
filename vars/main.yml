@@ -1,8 +1,11 @@
+# Helpers
 install_directory: /opt
 
+# Filesystem
 custom_directories:
   - ~/Development
 
+# Repo installs
 epel_release_key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
 dnf_packages:
   - cmake
@@ -10,6 +13,10 @@ dnf_packages:
   - gcc-c++
   - git
   - git-lfs
+  - snapd
+
+snapd_packages:
+  - discord
 
 sublime:
   key: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
@@ -18,7 +25,9 @@ sublime:
 microsoft_key: https://packages.microsoft.com/keys/microsoft.asc
 aws_cli_package: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 
-bashrc_aliases:
+
+# ~/.bashrc
+aliases:
   edbsh: "subl ~/.bashrc"
   srbsh: "source ~/.bashrc"
   c: "clear"
@@ -26,3 +35,6 @@ bashrc_aliases:
   dps: "docker ps -a"
   dip: "docker image prune --force"
   dcp: "docker container prune --force"
+
+extra_paths:
+  - /var/lib/snapd/snap/bin/

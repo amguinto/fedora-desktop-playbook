@@ -15,11 +15,33 @@
       ansible.builtin.lineinfile:
         path: ~/.bashrc
         line: "\n# aliases"
-        search_string: "\n#aliases"
       when: not exists.found
 
     - name: Adding aliases
       ansible.builtin.lineinfile:
         path: ~/.bashrc
         line: "alias {{ item.key }}='{{ item.value }}'"
-      loop: "{{ bashrc_aliases | dict2items }}"
+      loop: "{{ aliases | dict2items }}"
+
+- name: Add extra paths to PATH variable
+  block:
+    - name: Checking if path comment exists
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        search_string: "# paths"
+        state: absent
+      check_mode: yes
+      changed_when: false
+      register: exists
+
+    - name: Adding paths comment for neatness
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        line: "\n# paths"
+      when: not exists.found
+
+    - name: Adding paths
+      ansible.builtin.lineinfile:
+        path: ~/.bashrc
+        line: "export PATH=$PATH:{{ item }}"
+      loop: "{{ extra_paths }}"

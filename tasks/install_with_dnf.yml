@@ -17,3 +17,6 @@
     name: "{{ item }}"
     state: latest
   loop: "{{ dnf_packages }}"
+  notify: Start snapd.socket
+
+- ansible.builtin.meta: flush_handlers

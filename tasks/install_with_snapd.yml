@@ -1,0 +1,7 @@
+---
+# TODO: Sometimes we have to wait after starting snapd.socket before running this for some reason.
+- name: Installing snapd packages
+  become: true
+  community.general.snap:
+    name: "{{ item }}"
+  loop: "{{ snapd_packages }}"
