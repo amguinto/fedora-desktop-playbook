@@ -1,0 +1,15 @@
+---
+- name: Install Terraform
+  become: yes
+  vars:
+    app: Hashicorp Terraform
+  block:
+    - name: Getting repo ("{{ app }}")
+      ansible.builtin.get_url:
+        url: "{{ sublime.repo }}"
+        dest: /etc/yum.repos.d
+
+    - name: Installing via dnf ("{{ app }}")
+      ansible.builtin.dnf:
+        name: terraform
+        state: present

@@ -14,6 +14,7 @@ dnf_packages:
   - git
   - git-lfs
   - snapd
+  - yum-utils
 
 snapd_packages:
   - discord
@@ -24,7 +25,7 @@ sublime:
 
 microsoft_key: https://packages.microsoft.com/keys/microsoft.asc
 aws_cli_package: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-
+terraform_repo: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 
 # ~/.bashrc
 aliases:

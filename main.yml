@@ -10,5 +10,6 @@
     - include_tasks: tasks/install_sublime.yml
     - include_tasks: tasks/install_aws_cli.yml
     - include_tasks: tasks/install_vscode.yml
+    - include_tasks: tasks/install_terraform.yml
     - include_tasks: tasks/edit_bashrc.yml
     - include_tasks: tasks/install_with_snapd.yml
