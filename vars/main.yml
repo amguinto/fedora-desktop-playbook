@@ -6,15 +6,14 @@ custom_directories:
   - ~/Development
 
 # Repo installs
-epel_release_key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-9
 dnf_packages:
   - cmake
-  - https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
   - gcc-c++
   - git
   - git-lfs
   - snapd
   - yum-utils
+  - vim
 
 snapd_packages:
   - discord
